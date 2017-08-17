@@ -1,0 +1,24 @@
+{
+  "name": "react-critical-css",
+  "version": "0.0.1",
+  "description": "React Critical CSS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergei-zelinsky/react-critical-css.git"
+  },
+  "keywords": [
+    "react",
+    "critical",
+    "css"
+  ],
+  "author": "Sergei Zelinsky <sergei.zelinsky.dev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sergei-zelinsky/react-critical-css/issues"
+  },
+  "homepage": "https://github.com/sergei-zelinsky/react-critical-css#readme"
+}
