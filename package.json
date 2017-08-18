@@ -4,7 +4,8 @@
   "description": "React Critical CSS",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src --out-dir lib"
+    "build": "babel src --out-dir lib",
+    "test": "jest --notify"
   },
   "files": [
     "lib",
@@ -30,7 +31,9 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "jest": "^20.0.4",
     "prop-types": "^15.5.10",
-    "react": "^15.6.1"
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   }
 }
