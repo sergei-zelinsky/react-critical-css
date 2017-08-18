@@ -8,6 +8,12 @@ Extracts your critical CSS.
 npm install react-critical-css
 ```
 
+or
+
+```
+yarn add react-critical-css
+```
+
 ## Usage
 
 ```js
