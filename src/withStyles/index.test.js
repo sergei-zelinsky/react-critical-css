@@ -14,12 +14,17 @@ it('should throw an error when missing styles', () => {
   expect(() => withStyles()(TestComponent)).toThrow();
 });
 
-it('should throw an error when passing null', () => {
-  expect(() => withStyles(null)(TestComponent)).toThrow();
-});
-
 it('should throw an error when passing empty string', () => {
   expect(() => withStyles('')(TestComponent)).toThrow();
+});
+
+it('should throw an error when not a string', () => {
+  expect(() => withStyles(null)(TestComponent)).toThrow();
+  expect(() => withStyles(false)(TestComponent)).toThrow();
+  expect(() => withStyles(undefined)(TestComponent)).toThrow();
+  expect(() => withStyles(_ => _)(TestComponent)).toThrow();
+  expect(() => withStyles(/test/gi)(TestComponent)).toThrow();
+  expect(() => withStyles({css: 'body {color: red}'})(TestComponent)).toThrow();
 });
 
 it('should register stylesheets correctly', () => {
