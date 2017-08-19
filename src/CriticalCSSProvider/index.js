@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 class CriticalCSSProvider extends Component {
   getChildContext() {
-    const {registry} = this.props;
+    const {registerStyles} = this.props.registry;
     return {
-      registerStyles: (styles) => registry.registerStyles(styles),
+      registerStyles,
     }
   }
   render(){
