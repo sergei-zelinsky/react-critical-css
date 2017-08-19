@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-# [2.0.0] - 2017-08-19
+## [2.0.0] - 2017-08-19
 
 ### Changed
 - **withStyles** - throws an error when styles are not passed or when value's type is not `string`

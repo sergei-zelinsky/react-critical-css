@@ -1,6 +1,6 @@
 {
   "name": "react-critical-css",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "React Critical CSS",
   "main": "lib/index.js",
   "scripts": {
