@@ -39,7 +39,7 @@ const criticalCSS = styleRegistry.getCriticalCSS(); // <- extract collected crit
 
 ```js
 import React, {Component} from 'react';
-import {withStyles} from 'react-critical-css'; // import 'withStyles' HOC
+import {withStyles} from 'react-critical-css'; // import 'withStyles'
 import s from './index.css'; // import your styles, `s` should contain a string with style rules (see example webpack config below)
 
 class App extends Component {
@@ -52,7 +52,7 @@ class App extends Component {
   }
 }
 
-// wrap App component with 'withStyles' HOC
+// wrap App component with 'withStyles'
 
 export default withStyles(s)(App);
 
@@ -80,3 +80,83 @@ module.exports = {
     ]
   }
 };
+```
+
+## API
+
+### StyleRegistry [Class]
+
+#### Public API:
+- **registerStyles** - adds styles into internal registry
+- **getCriticalCSS** - returns critical stylesheets which has been registered through `registerStyles` previously 
+
+#### Usage
+```js
+import {StyleRegistry} from 'react-critical-css';
+
+// ...
+
+const styleRegistry = new StyleRegistry();
+
+// ..
+
+styleRegistry.registerStyles('body {color: red}');  // <- register stylesheets
+
+// ...
+
+const criticalCSS = styleRegistry.getCriticalCSS() // <- retrieve critical CSS
+
+```
+
+### CriticalCSSProvider [React Component]
+
+Passes context with registerStyles function through the React tree. 
+
+#### Props
+- **registry** - instance of StyleRegistry or other registry which supports the same API
+
+### withStyles [Decorator]
+
+Returns HOC which registers passed stylesheets.
+
+#### Arguments of `withStyles`
+
+- **styles** - string with CSS
+
+#### Arguments of `withStyles(styles)`
+
+- **Component** - React Component 
+
+#### Usage
+
+```js
+// ...
+import {withStyles} from 'react-critical-css';
+import s from 'path/to/css/file';
+
+// ...
+
+class MyComponent extends Component {
+  // ...
+}
+
+export default withStyles(s)(MyComponent);
+```
+
+or using `decorators`
+
+```js
+// ...
+import {withStyles} from 'react-critical-css';
+import s from 'path/to/css/file';
+
+// ...
+
+@withStyles(s)
+class MyComponent extends Component {
+  // ...
+}
+
+export default MyComponent;
+```
+
