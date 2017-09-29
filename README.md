@@ -2,6 +2,7 @@
 
 Extracts your critical CSS.
 
+[![Build Status](https://travis-ci.org/sergei-zelinsky/react-critical-css.svg?branch=master)](https://travis-ci.org/sergei-zelinsky/react-critical-css)
 [![npm](https://img.shields.io/npm/v/react-critical-css.svg)](https://www.npmjs.com/package/react-critical-css)
 [![npm](https://img.shields.io/npm/l/react-critical-css.svg)]()
 [![npm](https://img.shields.io/npm/dt/react-critical-css.svg)]()
