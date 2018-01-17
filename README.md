@@ -11,6 +11,7 @@ Extracts your critical CSS.
 
 ## Installation
 
+
 ```
 npm install react-critical-css
 ```
