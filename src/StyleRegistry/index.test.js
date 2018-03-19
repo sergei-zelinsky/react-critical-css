@@ -1,44 +1,59 @@
 import StyleRegistry from './index';
 
-it('should throw an error when try to register nothing', () => {
-  const styleRegistry = new StyleRegistry();
+const firstCSSTestRule = 'body {background: red}';
+const secondCSSTestRule = '.some-class-name {fontWeight: 600}';
+const emptyCSSTestRule = '';
 
-  expect(() => styleRegistry.registerStyles()).toThrow();
-});
 
-it('should throw an error when try to register empty string', () => {
-  const styleRegistry = new StyleRegistry();
+describe('StyleRegistry', () => {
+  it('should register styles', () => {
+    const styleRegistry = new StyleRegistry();
 
-  expect(() => styleRegistry.registerStyles('')).toThrow();
-});
+    styleRegistry.registerStyles(firstCSSTestRule);
+    styleRegistry.registerStyles(secondCSSTestRule);
 
-it('should throw an error when try to register not a string', () => {
-  const styleRegistry = new StyleRegistry();
+    const criticalCss = styleRegistry.getCriticalCSS();
 
-  expect(() => styleRegistry.registerStyles(null)).toThrow();
-  expect(() => styleRegistry.registerStyles({})).toThrow();
-  expect(() => styleRegistry.registerStyles(false)).toThrow();
-  expect(() => styleRegistry.registerStyles(true)).toThrow();
-  expect(() => styleRegistry.registerStyles(undefined)).toThrow();
-  expect(() => styleRegistry.registerStyles(_ => _)).toThrow();
-  expect(() => styleRegistry.registerStyles(/test/gi)).toThrow();
-  expect(() => styleRegistry.registerStyles({css: 'body {color: red}'})).toThrow();
+    expect(criticalCss).toBe(
+      [
+        firstCSSTestRule,
+        secondCSSTestRule
+      ].join('')
+    );
+  });
 
-});
+  it('should not register empty styles', () => {
+    const styleRegistry = new StyleRegistry();
 
-it('should return correct critical css', () => {
-  const testCSS = 'body {color: red}';
-  const styleRegistry = new StyleRegistry();
+    styleRegistry.registerStyles(firstCSSTestRule);
+    styleRegistry.registerStyles(emptyCSSTestRule);
+    styleRegistry.registerStyles(secondCSSTestRule);
 
-  styleRegistry.registerStyles(testCSS);
+    expect(styleRegistry.registry.length).toBe(2);
+  
+  });
+    
+  it('should not register the same styles', () => {
+    const styleRegistry = new StyleRegistry();
 
-  const criticalCSSOne = styleRegistry.getCriticalCSS();
+    styleRegistry.registerStyles(firstCSSTestRule);
+    styleRegistry.registerStyles(firstCSSTestRule);
 
-  expect(criticalCSSOne).toEqual(testCSS);
+    const criticalCss = styleRegistry.getCriticalCSS();
 
-  styleRegistry.registerStyles(testCSS);
+    expect(criticalCss).toEqual(firstCSSTestRule);
+  });
 
-  const criticalCSSTwo = styleRegistry.getCriticalCSS();
+  it('should use transformFn for styles transformation', () => {
+    const transformFn = str => str.replace(/\s/g, '');
+    const styleRegistry = new StyleRegistry(transformFn);
 
-  expect(criticalCSSTwo).toEqual(`${testCSS}${testCSS}`);
+    styleRegistry.registerStyles(firstCSSTestRule);
+
+    const criticalCss = styleRegistry.getCriticalCSS();
+    const transformedFirstCSSTestRule = transformFn(firstCSSTestRule);    
+
+    expect(criticalCss).toEqual(transformedFirstCSSTestRule);
+  })
+
 });

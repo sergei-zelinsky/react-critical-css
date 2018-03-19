@@ -35,31 +35,14 @@ function renderRootComponent(styleRegistry, onMountCallback){
   );
 }
 
-it('children can access context created by CriticalCSSProvider', () => {
-  const styleRegistry = new StyleRegistry();
-
-  renderRootComponent(styleRegistry, (context) => {
-    expect(context).not.toBeFalsy()
+describe('CriticalCSSProvider', () => {
+  
+  it('registerStyles should be a function', () => {
+    const styleRegistry = new StyleRegistry();
+  
+    renderRootComponent(styleRegistry, (context) => {
+      expect(context.registerStyles).toBeInstanceOf(Function);
+    })
   });
-});
 
-it('should pass right context to the children', () => {
-  const mockedRegisterStylesFn = jest.fn();
-  const mockedStyleRegistry = {
-    registerStyles: mockedRegisterStylesFn
-  };
-
-  renderRootComponent(mockedStyleRegistry, (context) => {
-    expect(context).toEqual({
-      registerStyles: mockedRegisterStylesFn
-    });
-  })
-});
-
-it('registerStyles should be a function', () => {
-  const styleRegistry = new StyleRegistry();
-
-  renderRootComponent(styleRegistry, (context) => {
-    expect(typeof context.registerStyles === 'function').toBe(true);
-  })
 });
