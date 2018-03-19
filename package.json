@@ -4,8 +4,11 @@
   "description": "React Critical CSS",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src --out-dir lib",
-    "test": "jest --notify"
+    "clean": "rimraf lib",
+    "build": "babel src --out-dir lib --ignore '*.test.js'",
+    "prepublish": "run-s clean build",
+    "build:watch": "run-s \"build --watch\"",
+    "test": "jest"
   },
   "files": [
     "lib",
@@ -32,8 +35,13 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "jest": "^20.0.4",
+    "npm-run-all": "^4.1.2",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "rimraf": "^2.6.2"
+  },
+  "jest": {
+    "rootDir": "src"
   }
 }
