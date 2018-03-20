@@ -6,6 +6,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.1.0] - 2018-03-19
+
+### Added
+
+`StyleRegistry` now optionally accepts `transformFn`
+
+#### Example:
+
+```js
+const styleRegistry = new StyleRegistry(style => style.replace(/\s/g, ''));
+   
+styleRegistry.registerStyles('body { color: red; }')
+
+console.log(styleRegistry.getCriticalCSS())  //-> body{color: red;}
+// ...
+```
+
+### Changed
+
+Components don't throw any errors now.
+
 ## [2.0.0] - 2017-08-19
 
 ### Changed
