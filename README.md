@@ -97,6 +97,10 @@ module.exports = {
 - **registerStyles** - adds styles into internal registry
 - **getCriticalCSS** - returns critical stylesheets which has been registered through `registerStyles` previously 
 
+```js
+new StyleRegistry(<transformFn>);
+```
+
 #### Usage
 ```js
 import {StyleRegistry} from 'react-critical-css';
@@ -113,6 +117,15 @@ styleRegistry.registerStyles('body {color: red}');  // <- register stylesheets
 
 const criticalCSS = styleRegistry.getCriticalCSS() // <- retrieve critical CSS
 
+```
+
+```js
+const styleRegistry = new StyleRegistry(style => style.replace(/\s/g, ''));
+   
+styleRegistry.registerStyles('body { color: red; }')
+
+console.log(styleRegistry.getCriticalCSS())  //-> body{color: red;}
+// ...
 ```
 
 ### CriticalCSSProvider [React Component]
